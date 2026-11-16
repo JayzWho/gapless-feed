@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  format:
+    name: format
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install clang-format
+        run: sudo apt-get update && sudo apt-get install -y clang-format
+      - name: Check formatting
+        run: scripts/format.sh --check
+
+  build-and-test:
+    name: ${{ matrix.compiler }} ${{ matrix.preset }}
+    runs-on: ubuntu-26.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { compiler: g++, preset: debug }
+          - { compiler: g++, preset: release }
+          - { compiler: clang++, preset: debug }
+    env:
+      CXX: ${{ matrix.compiler }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install toolchain
+        run: sudo apt-get update && sudo apt-get install -y g++ clang cmake make libgtest-dev
+      - name: Configure
+        run: cmake --preset ${{ matrix.preset }} -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
+      - name: Build
+        run: cmake --build --preset ${{ matrix.preset }}
+      - name: Test
+        run: ctest --preset ${{ matrix.preset }}
+      - name: Print build info
+        run: build/${{ matrix.preset }}/gapless-buildinfo

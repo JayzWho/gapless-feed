@@ -1,0 +1,8 @@
+// Filled in by CMake at configure time. Only build_info.cpp includes the result.
+#pragma once
+
+#define GAPLESS_VERSION "@PROJECT_VERSION@"
+#define GAPLESS_COMPILER "@CMAKE_CXX_COMPILER_ID@ @CMAKE_CXX_COMPILER_VERSION@"
+#define GAPLESS_BUILD_TYPE "@CMAKE_BUILD_TYPE@"
+#define GAPLESS_CXX_FLAGS "@GAPLESS_CXX_FLAGS@"
+#define GAPLESS_SANITIZERS "@GAPLESS_SANITIZERS@"
