@@ -1,0 +1,26 @@
+# Private docs and market data (never commit)
+Docs/Private/
+Data/
+
+# Build outputs
+build/
+cmake-build-*/
+.cmake/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+*.a
+*.so
+*.o
+.cache/
+__pycache__/
+
+# Editor and OS files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.log
