@@ -55,4 +55,5 @@ if(BUILD_TESTING)
   add_test(NAME buildinfo_runs COMMAND gapless-buildinfo)
   set_tests_properties(buildinfo_runs PROPERTIES
     PASS_REGULAR_EXPRESSION "^gapless-feed ${PROJECT_VERSION}\n")
+  add_subdirectory(tests)
 endif()
