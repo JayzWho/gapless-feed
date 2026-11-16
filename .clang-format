@@ -1,0 +1,10 @@
+# Formatting for all C++ in this repository. Apply it with scripts/format.sh.
+BasedOnStyle: LLVM
+IndentWidth: 4
+ColumnLimit: 100
+AccessModifierOffset: -4
+PointerAlignment: Left
+SpaceAfterTemplateKeyword: false
+BreakTemplateDeclarations: Yes
+AllowShortFunctionsOnASingleLine: Empty
+InsertNewlineAtEOF: true
